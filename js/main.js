@@ -135,7 +135,7 @@
                             showConfirmButton: false,
                             timer: 1500
                         }).then((result) => {
-                            window.location.href = "/home.php";
+                            window.location.href = "/~escheer/re-works/home.php";
                         })
                         // alert(JSON.stringify(res))
                 } else {
@@ -147,7 +147,7 @@
                             showConfirmButton: false,
                             timer: 1500
                         }).then((result) => {
-                            window.location.href = "/login.php";
+                            window.location.href = "/~escheer/re-works/login.php";
                         })
                         // alert(JSON.stringify(res))
                 }

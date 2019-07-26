@@ -95,7 +95,7 @@ $totalUserCount = $totalUserCountsmt->get_result()->fetch_all(MYSQLI_ASSOC)[0]["
 				<div class="login100-form" style="padding:0px; background:white;">
 					<div class="row bg-light" style="background:#f8f9fa; height:86px; z-index:10000; display: flex; justify-content:flex-end;">
 
-						<span style="margin:30px; margin-right:50px;"> <span style="margin:15px;"> <a href="/login.php?action=logout">Logout</a> </span>
+						<span style="margin:30px; margin-right:50px;"> <span style="margin:15px;"> <a href="/~escheer/re-works/login.php?action=logout">Logout</a> </span>
 							<span> <a class="avatar" href="#">
 									<img src="images/<?php echo $curUserID ?>.png" width="35" alt="Profile Avatar" title="Bradley Jones" />
 								</a> </span>
@@ -201,7 +201,7 @@ $totalUserCount = $totalUserCountsmt->get_result()->fetch_all(MYSQLI_ASSOC)[0]["
 
 					<div class="hero-image">
 						<nav class="navbar navbar-expand-lg navbar-light bg-light textfont">
-							<a class="navbar-brand" href="/home.php" style="font-size:2.3em; font-weight:600;">
+							<a class="navbar-brand" href="/~escheer/re-works/home.php" style="font-size:2.3em; font-weight:600;">
 								<img src="images/graylogo.png" width="65" height="60" class="textfont d-inline-block align-top" alt="">
 								re:works
 							</a>
@@ -316,7 +316,7 @@ $totalUserCount = $totalUserCountsmt->get_result()->fetch_all(MYSQLI_ASSOC)[0]["
 								echo "<h5 class=\"card-title\">{$name} <span class=\"circle\" style=\" background-color:{$colors[strtolower($name)]} \" >{$name[0]}</span> </h5>";
 								echo "<p class=\"card-text\">{$title}</p>";
 								// echo "<p class=\"card-text\">Ranking: {$row["rank"]}</p>";
-								echo "<a href=\"/job.php?id={$jobID}\" class=\"btn btn-primary purple-btn \" style=\" background:white;  \">See Details</a>";
+								echo "<a href=\"/~escheer/re-works/job.php?id={$jobID}\" class=\"btn btn-primary purple-btn \" style=\" background:white;  \">See Details</a>";
 								echo "</div>";
 								echo "</div>";
 								echo "</div>";

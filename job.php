@@ -104,7 +104,7 @@ function getInterviewerIDbyJobID($jobID)
                 <div class="login100-form" style="padding:0px; background:white; height:50vh; overflow-y:scroll;  ">
                     <div class="row bg-light" style="background:#f8f9fa; height:86px; z-index:10000; display: flex; justify-content:flex-end;">
 
-                        <span style="margin:30px; margin-right:50px;"> <span style="margin:15px;"> <a> Logout </a> </span>
+                        <span style="margin:30px; margin-right:50px;"> <span style="margin:15px;"> <a href="/~escheer/re-works/login.php?action=logout">Logout</a></span>
                             <span> <a class="avatar" href="#">
                                     <img src="images/<?php echo $curUserID ?>.png" width="35" alt="Profile Avatar" title="Bradley Jones" />
                                 </a> </span>
@@ -159,18 +159,18 @@ function getInterviewerIDbyJobID($jobID)
                             </button>
                             <div class="collapse navbar-collapse" id="navbarNav">
                                 <ul class="navbar-nav">
-                                    <li class="nav-item active">
-                                        <a class="nav-link" href="/home.php">Home <span class="sr-only">(current)</span></a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Features</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="#">Pricing</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link disabled" href="#">Disabled</a>
-                                    </li>
+                                <li class="nav-item ">
+										<a class="nav-link" href="#">Home</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#"></a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="#"></a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link disabled" href="#">Hi, <span style="font-weight: 600; color:darkgray"> <?php echo $curUserName; ?> </span> ! You are logged in as <?php echo $pronoun = ($curUserType == "Student") ? "a" : "an"; ?> <span style="font-weight: 600; color:darkgray"> <?php echo $curUserType; ?> </span> </a>
+									</li>
                                 </ul>
                             </div>
                             <div class="hero-text" style="margin-top:20px;">
