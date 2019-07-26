@@ -53,17 +53,39 @@ $stmt->store_result();
 $stmt->bind_result($jobID, $companyID, $openings, $title, $category, $expLevel, $duration, $location, $description, $name, $division);
 $stmt->fetch();
 
-$sqlSJ = "SELECT * FROM SJ_Ranks WHERE s_Id=? AND jobID=?";
+$sqlSJ = "SELECT * FROM SJ_Ranks WHERE s_Id=? AND jobID=? and rank IS NOT NULL";
 $stmt = $mysqli->prepare($sqlSJ);
 $stmt->bind_param("ii", $curUserID, $jobID);
 $stmt->execute();
 $arrSJ = $stmt->get_result()->fetch_all(MYSQLI_ASSOC)[0];
 
-$sqlJS = "SELECT * FROM JS_Ranks WHERE s_Id=? and jobID=?";
+$sqlJS = "SELECT * FROM JS_Ranks WHERE s_Id=? and jobID=? and rank IS NOT NULL";
 $stmt = $mysqli->prepare($sqlJS);
 $stmt->bind_param("ii", $curUserID, $jobID);
 $stmt->execute();
 $arrJS = $stmt->get_result()->fetch_all(MYSQLI_ASSOC)[0];
+
+// //rank is not null by s_id and job_id = ? 
+// $sqlJS = "SELECT rank FROM JS_Ranks WHERE s_Id=? and jobID=? and rank IS NOT NULL";
+// $stmt = $mysqli->prepare($sqlJS);
+// $stmt->bind_param("ii", $curUserID, $jobID);
+// $stmt->execute();
+// $arrJS = $stmt->get_result()->fetch_all(MYSQLI_ASSOC)[0];
+
+
+// //rank is not null by s_id and job_id = ? 
+// $sqlJS = "SELECT rank FROM SJ_Ranks WHERE s_Id=? and jobID=? and rank IS NOT NULL";
+// $stmt = $mysqli->prepare($sqlJS);
+// $stmt->bind_param("ii", $curUserID, $jobID);
+// $stmt->execute();
+// $arrJS = $stmt->get_result()->fetch_all(MYSQLI_ASSOC)[0];
+
+
+
+
+
+
+
 //note is not null
 $sqlComment = "SELECT * FROM (SELECT * FROM SJ_Ranks WHERE jobID=? and note IS NOT NULL) as comment NATURAL JOIN Student NATURAL JOIN User ORDER BY date DESC";
 $stmt = $mysqli->prepare($sqlComment);
