@@ -150,10 +150,10 @@ function getInterviewerIDbyJobID($jobID)
                 </div>
                 <div class="login100-more" style="background-color:#fff;">
                     <!-- <img src="images/bf-03.jpg">  -->
-                    <div class="hero-image" style="background-image: linear-gradient(25deg, <?php echo $colors[strtolower($name)] ?>, rgba(249, 209, 205, 0.05)), url(/images/bg.png);">
+                    <div class="hero-image" style="background-image: linear-gradient(25deg, <?php echo $colors[strtolower($name)] ?>, rgba(249, 209, 205, 0.05)), url(images/bg.png);">
                         <nav class="navbar navbar-expand-lg navbar-light bg-light textfont">
-                            <a class="navbar-brand" href="/home.php" style="font-size:2.3em; font-weight:600;">
-                                <img src="images/graylogo.png" width="65" height="60" class="textfont d-inline-block align-top" alt="">
+                            <a class="navbar-brand" href="/~escheer/re-works/home.php" style="font-size:2.3em; font-weight:600;">
+                                <img src="images/bg.png" width="65" height="60" class="textfont d-inline-block align-top" alt="">
                                 re:works
                             </a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -162,7 +162,7 @@ function getInterviewerIDbyJobID($jobID)
                             <div class="collapse navbar-collapse" id="navbarNav">
                                 <ul class="navbar-nav">
                                 <li class="nav-item ">
-										<a class="nav-link" href="#">Home</a>
+										<a class="nav-link" href="/~escheer/re-works/home.php">Home</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link" href="#"></a>
