@@ -1,15 +1,15 @@
 <?php
 // Development
-$dbhost = '127.0.0.1:3306';
-$dbuser = 'root';
-$dbpassword = '';
-$dbname = 'escheer';
-
-// // Production
-// $dbhost = 'localhost';
-// $dbuser = 'escheer';
-// $dbpassword = 'R@gnBnMn897';
+// $dbhost = '127.0.0.1:3306';
+// $dbuser = 'root';
+// $dbpassword = '';
 // $dbname = 'escheer';
+
+// Production
+$dbhost = 'localhost';
+$dbuser = 'escheer';
+$dbpassword = 'R@gnBnMn897';
+$dbname = 'escheer';
 
 // (2) mysqli connection variable
 $mysqli = new mysqli($dbhost, $dbuser, $dbpassword, $dbname);
