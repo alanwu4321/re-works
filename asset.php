@@ -1,5 +1,4 @@
 <?php 
-
 $colors = array(
     "google" => "#ff7172", 
     "apple" => "#666", 
@@ -15,12 +14,5 @@ $colors = array(
     "netflix" => "#83AF9B",
     // "microsoft" => "#83AF9B"
 );
-
-
-
-
-
-
-
 
 ?>

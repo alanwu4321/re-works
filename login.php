@@ -50,12 +50,11 @@ if ($_GET['action'] == "logout"){
         <div class="container-login100">
             <div class="wrap-login100">
                 <div class="login100-form">
+                    <!-- FORM IS SUBMITTED THROUGH MAIN.JS FIRST AND HANDLED BY AUTH.PHP FOR AJAX AND ASYNCHRONOUS PROCESSING-->
                     <form class=" validate-form">
                         <span class="login100-form-title p-b-43 loginTitle">
                             Login to continue
                         </span>
-
-
                         <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
                             <input class="input100" type="text" name="username">
                             <span class="focus-input100"></span>

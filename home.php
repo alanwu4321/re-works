@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Login V18</title>
+	<title>re:works</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
@@ -27,25 +27,20 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<!--===============================================================================================-->
-
-
-
 </head>
-
 
 <div class="php">
 	<?php
+	//env variable
 	$env = "prod";
 	include "cookies.php";
 	include "env.php";
-
 	$curUser = checkCookies();
 	$curUserID = $curUser[0];
 	$curUserType = $curUser[1];
 	$curUserUsername = $curUser[2];
 	$curUserName = ucwords($curUser[3]);
 	$curUserTypeID = $curUser[4];
-
 	?>
 </div>
 
@@ -70,11 +65,9 @@ $stmtJobCount->bind_param("i", $curUserID);
 $stmtJobCount->execute();
 
 
+//Populate Profile Cards
 $JobLeftToRankCountStudent = $stmtJobCount->get_result()->fetch_all(MYSQLI_ASSOC)[0]["COUNT(distinct jobID)"];
 $numberOfJobs = $stmt->num_rows;
-
-// Interview ID
-// print_r($curUserTypeID);
 
 //Interviewer (comments that interviews made)
 $commentsCountInterviewSQL = "SELECT Count(i_Id) FROM (Select jobID, note from JS_Ranks where note is not null) as m natural join Interviews_For as i where i_Id = ? group by i_Id having Count(i_Id) > 0";
@@ -88,30 +81,26 @@ $totalUserCountsmt = $mysqli->prepare($totalUserCountSQL);
 $totalUserCountsmt->execute();
 $totalUserCount = $totalUserCountsmt->get_result()->fetch_all(MYSQLI_ASSOC)[0]["Count(userID)"];
 
-// print_r($totalUserCount);
 ?>
 
 <body style="background-color: #666666;">
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-
 				<div class="login100-form" style="padding:0px; background:white;">
 					<div class="row bg-light" style="background:#f8f9fa; height:86px; z-index:10000; display: flex; justify-content:flex-end;">
-
 						<span style="margin:30px; margin-right:50px;"> <span style="margin:15px;"> <a href="<?php echo $host; ?>/login.php?action=logout">Logout</a> </span>
 							<span> <a class="avatar" href="#">
 									<img src="images/<?php echo $curUserID ?>.png" width="35" alt="Profile Avatar" title="Bradley Jones" />
 								</a> </span>
 						</span>
-
 					</div>
 					<div class="card" style="border:0px; padding:2em; padding-top:0em; padding-bottom:0em;">
 						<div class="card-body">
 							<center class="m-t-30"> <img src="images/<?php echo $curUserID ?>.png" class="img-circle" width="150">
 								<!-- <img src="" alt="Profile Image not Found"> -->
 								<h4 class="card-title m-t-10"><?php echo $curUserName ?> </h4>
-								<h6 class="card-subtitle">Accounts Manager Amix Corp</h6>
+								<h6 class="card-subtitle"><?php echo $curUserType ?></h6>
 								<div class="row text-center justify-content-md-center">
 									<div class="col-6">
 										<font size="2" class="text-muted p-t-30 db">
@@ -135,7 +124,6 @@ $totalUserCount = $totalUserCountsmt->get_result()->fetch_all(MYSQLI_ASSOC)[0]["
 							<h6>j99doe@edu.uwaterloo.ca</h6> <small class="text-muted p-t-30 db">Phone #</small>
 							<h6>+1 613 589 9926</h6> <small class="text-muted p-t-30 db">LinkedIn</small>
 							<h6><a href="https://www.linkedin.com/in/alan-wu-36b668157/">Click to go to LinkedIn Profile</a></h6> -->
-
 							<div class="row">
 								<div class="col-md-6 col-xl-6">
 									<div class="card speical_card bg-c-blue order-card">
@@ -157,26 +145,28 @@ $totalUserCount = $totalUserCountsmt->get_result()->fetch_all(MYSQLI_ASSOC)[0]["
 									</div>
 								</div>
 							</div>
-
 							<div class="row">
 								<div class="col-md-6 col-xl-6">
 									<div class="card speical_card bg-c-yellow order-card">
 										<div class="card-block">
 											<h6 class="m-b-20">Time until Deadline</h6>
-											<h2 class="text-right"><i class="fa fa-refresh f-left"></i><span><?php
-																												$date1 = new DateTime('now');
-																												$date2 = date_create("2019-07-30");
-																												//difference between two dates
-																												$diff = date_diff($date1, $date2);
-																												//count days
-																												echo $diff->format("%a ");
-																												?></span></h2>
+											<h2 class="text-right"><i class="fa fa-refresh f-left"></i>
+											  <span>
+												<?php
+												$date1 = new DateTime('now');
+												$date2 = date_create("2019-07-30");
+												//difference between two dates
+												$diff = date_diff($date1, $date2);
+												//count days
+												echo $diff->format("%a ");
+												?>
+											  </span>
+											</h2>
 											<p class="m-b-0">Days until <?php $deadlineTime = mktime(23, 59, 59, 7, 28, 2019);
 																		echo date("F d, Y", $deadlineTime); ?><span class="f-right"></span></p>
 										</div>
 									</div>
 								</div>
-
 								<div class="col-md-6 col-xl-6">
 									<div class="card speical_card bg-c-pink order-card">
 										<div class="card-block">
@@ -202,7 +192,6 @@ $totalUserCount = $totalUserCountsmt->get_result()->fetch_all(MYSQLI_ASSOC)[0]["
 
 				<div class="login100-more" style="background-color:#fff;">
 					<!-- <img src="images/bf-03.jpg">  -->
-
 					<div class="hero-image">
 						<nav class="navbar navbar-expand-lg navbar-light bg-light textfont">
 							<a class="navbar-brand" href="<?php echo $host; ?>/home.php" style="font-size:2.3em; font-weight:600;">
@@ -230,13 +219,9 @@ $totalUserCount = $totalUserCountsmt->get_result()->fetch_all(MYSQLI_ASSOC)[0]["
 							</div>
 							<div class="hero-text" style="margin-top:20px;">
 								<h1 class="textfont" style="font-size:4em; color:white; font-weight:700;"> My Jobs</h1>
-								<!-- <p>And I'm a Photographer</p> -->
 								<button class="btn btn-primary purple-btn" data-toggle="modal" data-target="#exampleModal" style="background-color: #ded2d2; color:white; border:none; z-index: 100!important;">Add a Job</button>
 							</div>
 					</div>
-
-					<!-- Button trigger modal -->
-
 
 					<!-- Modal -->
 					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -320,7 +305,6 @@ $totalUserCount = $totalUserCountsmt->get_result()->fetch_all(MYSQLI_ASSOC)[0]["
 								echo "<div class=\"card-body\">";
 								echo "<h5 class=\"card-title\">{$name} <span class=\"circle\" style=\" background-color:{$colors[strtolower($name)]} \" >{$name[0]}</span> </h5>";
 								echo "<p class=\"card-text\">{$title}</p>";
-								// echo "<p class=\"card-text\">Ranking: {$row["rank"]}</p>";
 								echo "<a href=\"{$host}/job.php?id={$jobID}\" class=\"btn btn-primary purple-btn \" style=\" background:white;  \">See Details</a>";
 								echo "</div>";
 								echo "</div>";
@@ -336,9 +320,7 @@ $totalUserCount = $totalUserCountsmt->get_result()->fetch_all(MYSQLI_ASSOC)[0]["
 	</div>
 
 
-
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-
 	<!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 	<!--===============================================================================================-->

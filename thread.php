@@ -27,5 +27,3 @@ if (isset($_POST["comment"])) {
     echo json_encode(['response' => $res]);
     $stmt->close();
 }
-
-?>

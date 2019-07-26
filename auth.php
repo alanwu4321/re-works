@@ -1,6 +1,6 @@
 <?php
 include "dbConfig.php";
-// print_r($_POST);
+
 if (isset($_POST["username"]) || isset($_POST["password"])) {
     $username = "";
     $password = "";
@@ -10,16 +10,18 @@ if (isset($_POST["username"]) || isset($_POST["password"])) {
     if (isset($_POST['password'])) {
         $password = $_POST['password'];
     }
-    // $stmt =  $mysqli->stmt_init();
+
+    //User Validation
     $sql = "SELECT * FROM User WHERE userName=? AND password=?";
     $stmt = $mysqli->prepare($sql);
     $stmt->bind_param("ss",$username, $password);
     $stmt->execute();
     $result = $stmt->get_result();
-    // print_r("Error: %s.\n", $stmt->error);
+
     if ($result->num_rows == 1) {
         $response = $result->fetch_all(MYSQLI_ASSOC);
-        // print_r($response);
+
+        //Get the typeID after User validation
         $studentIDSQL = "SELECT s_Id FROM Student WHERE userId = ?";
         $intIDSQL = "SELECT i_Id FROM Interviewer WHERE userId = ?";
         $table = ($response[0]["type"] == "Student") ? $studentIDSQL : $intIDSQL;
@@ -27,9 +29,13 @@ if (isset($_POST["username"]) || isset($_POST["password"])) {
         $typeIDmt->bind_param("i",$response[0]["userID"]);
         $typeIDmt->execute();
         $typeID = $typeIDmt->get_result()->fetch_assoc();
+
+        //Set Cookies 
         $key = ($response[0]["type"] == "Student") ? "s_Id" : "i_Id";
         $cookieValue = $response[0]["userID"] . "," . $response[0]["type"] . "," . $response[0]["userName"] . "," . $response[0]["name"] . "," . $typeID[$key];
         setcookie("curUser", $cookieValue, time()+40000, "/"); 
+
+        //Set JSON response back to JS script
         header('Content-type: application/json');
         echo json_encode(['response' => 'success', 'data' => $response]);
     }else{
@@ -37,6 +43,3 @@ if (isset($_POST["username"]) || isset($_POST["password"])) {
         echo json_encode(['response' => 'error']);
     }
 }
-?>
-
-
