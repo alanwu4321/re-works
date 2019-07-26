@@ -84,7 +84,7 @@ $totalUserCountsmt = $mysqli->prepare($totalUserCountSQL);
 $totalUserCountsmt->execute();
 $totalUserCount = $totalUserCountsmt->get_result()->fetch_all(MYSQLI_ASSOC)[0]["Count(userID)"];
 
-print_r($totalUserCount);
+// print_r($totalUserCount);
 ?>
 
 <body style="background-color: #666666;">
