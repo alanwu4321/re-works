@@ -33,7 +33,7 @@
 <div class="php">
     <?php
     include "cookies.php";
-    $env = "prod";
+    $env = "dev";
 	include "env.php";
     $curUser = checkCookies();
     $curUserID = $curUser[0];
@@ -84,9 +84,32 @@ $arrJS = $stmt->get_result()->fetch_all(MYSQLI_ASSOC)[0];
 // $stmt->execute();
 // $arrJS = $stmt->get_result()->fetch_all(MYSQLI_ASSOC)[0];
 
+$rankArray = "Select Count(SJ_Ranks.rank) From escheer.SJ_Ranks group by s_Id having AVG(SJ_Ranks.rank) <= (Select SJ_Ranks.rank from escheer.SJ_Ranks where jobID = 1 and s_Id = 8 and SJ_Ranks.rank is not null)";
+$rankArraymt = $mysqli->prepare($rankArray);
+// $rankArraymt->bind_param("i", $jobID);
+$rankArraymt->execute();
+$rankArrayres = $rankArraymt->get_result()->fetch_all(MYSQLI_ASSOC);
+$sum = 0; 
+foreach($rankArrayres as $el) {
+    $sum += $el["Count(SJ_Ranks.rank)"];
+}
+// print_r($sum);
 
+$JSRankprob = $arrJS["rank"];
+$SJRankprob = $arrSJ["rank"];
+$matchChance = 0;
+if ($JSRankprob == 1 AND $SJRankprob == 1) { 
+    $matchChance = 100;
+    // echo $matchChance;
+} elseif ($JSRankprob == "Not Ranked") {
+    $matchChance = 0;
+    // echo $matchChance;
+} else {
+    $matchChance =  $sum/(sizeof(rankArrayres)*$SJRankprob)*10;
+    // echo $matchChance; 
+}
 
-
+// echo $matchChance . "%";
 
 
 
@@ -225,8 +248,7 @@ function getInterviewerIDbyJobID($jobID)
                                 echo "<div class=\"card\" style=\"width: 18rem; margin-top:20px;\">";
                                 echo "<div class=\"card-body\">";
                                 echo "<h5 class=\"card-title\"> Probability of Match </h5>";
-
-                                echo "<h3 class=\"card-title\" style=\"color:{$colors[strtolower($name)]} \"  > 69% </h3>";
+                                echo "<h3 class=\"card-title\" style=\"color:{$colors[strtolower($name)]} \"  > {$matchChance} % </h3>";
                                 echo "<hr> ";
                                 $JSRank = ($arrJS["rank"] == null) ? " Pending " : $arrJS["rank"];
                                 $SJRank = ($arrSJ["rank"] == null) ? " Pending " : $arrSJ["rank"];

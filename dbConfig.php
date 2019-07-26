@@ -1,5 +1,5 @@
 <?php
-$env = "prod";
+$env = "dev";
 include "env.php";
 $mysqli = new mysqli($dbhost, $dbuser, $dbpassword, $dbname);
 if ($mysqli->connect_errno) 

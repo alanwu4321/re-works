@@ -35,7 +35,7 @@
 
 <div class="php">
 	<?php
-	$env = "prod";
+	$env = "dev";
 	include "cookies.php";
 	include "env.php";
 
