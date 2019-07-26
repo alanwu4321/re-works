@@ -132,6 +132,7 @@ function getInterviewerIDbyJobID($jobID)
                                 }
                                 ?>
                             </div>
+                            <?php if($curUserType =="Student") :?>
                             <li class="write-new">
                                 <form class="threadInput">
                                     <input class="" name="s_Id" type="hidden" value="<?php echo $curUserID ?>">
@@ -143,12 +144,13 @@ function getInterviewerIDbyJobID($jobID)
                                     </div>
                                 </form>
                             </li>
+                            <?php endif; ?>
                         </ul>
                     </div>
                 </div>
                 <div class="login100-more" style="background-color:#fff;">
                     <!-- <img src="images/bf-03.jpg">  -->
-                    <div class="hero-image" style="background-image: linear-gradient(25deg, <?php echo $colors[strtolower($name)] ?>, rgba(249, 209, 205, 0.05)), url(/images/graylogo.png);">
+                    <div class="hero-image" style="background-image: linear-gradient(25deg, <?php echo $colors[strtolower($name)] ?>, rgba(249, 209, 205, 0.05)), url(/images/bg.png);">
                         <nav class="navbar navbar-expand-lg navbar-light bg-light textfont">
                             <a class="navbar-brand" href="/home.php" style="font-size:2.3em; font-weight:600;">
                                 <img src="images/graylogo.png" width="65" height="60" class="textfont d-inline-block align-top" alt="">

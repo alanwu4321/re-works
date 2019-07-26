@@ -202,7 +202,7 @@ $totalUserCount = $totalUserCountsmt->get_result()->fetch_all(MYSQLI_ASSOC)[0]["
 					<div class="hero-image">
 						<nav class="navbar navbar-expand-lg navbar-light bg-light textfont">
 							<a class="navbar-brand" href="/~escheer/re-works/home.php" style="font-size:2.3em; font-weight:600;">
-								<img src="images/graylogo.png" width="65" height="60" class="textfont d-inline-block align-top" alt="">
+								<img src="images/bg.png" width="65" height="60" class="textfont d-inline-block align-top" alt="">
 								re:works
 							</a>
 							<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
