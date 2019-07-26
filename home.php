@@ -152,7 +152,7 @@ $totalUserCount = $totalUserCountsmt->get_result()->fetch_all(MYSQLI_ASSOC)[0]["
 										<div class="card-block">
 											<h6 class="m-b-20"><?php echo $card2Title = $curUserType == "Student" ? "Pending Jobs" : "Total Comments" ?></h6>
 											<h2 class="text-right"><i class="fa fa-comment-o f-left"></i><span><?php echo $card2 = $curUserType == "Student" ? $JobLeftToRankCountStudent : $commentsCountInterviewCount ?></span></h2>
-											<p class="m-b-0"><?php echo $card2Title = $curUserType == "Student" ? "Total Comment Count" : "Jobs left to be Ranked" ?><span class="f-right"></span></p>
+											<p class="m-b-0"><?php echo $card2Title = $curUserType != "Student" ? "Total Comment Count" : "Jobs left to be Ranked" ?><span class="f-right"></span></p>
 										</div>
 									</div>
 								</div>
