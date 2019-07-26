@@ -35,13 +35,17 @@
 
 <div class="php">
 	<?php
+	$env = "dev";
 	include "cookies.php";
+	include "env.php";
+
 	$curUser = checkCookies();
 	$curUserID = $curUser[0];
 	$curUserType = $curUser[1];
 	$curUserUsername = $curUser[2];
 	$curUserName = ucwords($curUser[3]);
 	$curUserTypeID = $curUser[4];
+
 	?>
 </div>
 
@@ -95,7 +99,7 @@ $totalUserCount = $totalUserCountsmt->get_result()->fetch_all(MYSQLI_ASSOC)[0]["
 				<div class="login100-form" style="padding:0px; background:white;">
 					<div class="row bg-light" style="background:#f8f9fa; height:86px; z-index:10000; display: flex; justify-content:flex-end;">
 
-						<span style="margin:30px; margin-right:50px;"> <span style="margin:15px;"> <a href="/~escheer/re-works/login.php?action=logout">Logout</a> </span>
+						<span style="margin:30px; margin-right:50px;"> <span style="margin:15px;"> <a href="<?php echo $host; ?>/login.php?action=logout">Logout</a> </span>
 							<span> <a class="avatar" href="#">
 									<img src="images/<?php echo $curUserID ?>.png" width="35" alt="Profile Avatar" title="Bradley Jones" />
 								</a> </span>
@@ -168,7 +172,7 @@ $totalUserCount = $totalUserCountsmt->get_result()->fetch_all(MYSQLI_ASSOC)[0]["
 																												echo $diff->format("%a ");
 																												?></span></h2>
 											<p class="m-b-0">Days until <?php $deadlineTime = mktime(23, 59, 59, 7, 28, 2019);
-																echo date("F d, Y", $deadlineTime); ?><span class="f-right"></span></p>
+																		echo date("F d, Y", $deadlineTime); ?><span class="f-right"></span></p>
 										</div>
 									</div>
 								</div>
@@ -201,7 +205,7 @@ $totalUserCount = $totalUserCountsmt->get_result()->fetch_all(MYSQLI_ASSOC)[0]["
 
 					<div class="hero-image">
 						<nav class="navbar navbar-expand-lg navbar-light bg-light textfont">
-							<a class="navbar-brand" href="/~escheer/re-works/home.php" style="font-size:2.3em; font-weight:600;">
+							<a class="navbar-brand" href="<?php echo $host; ?>/home.php" style="font-size:2.3em; font-weight:600;">
 								<img src="images/bg.png" width="65" height="60" class="textfont d-inline-block align-top" alt="">
 								re:works
 							</a>
@@ -211,7 +215,7 @@ $totalUserCount = $totalUserCountsmt->get_result()->fetch_all(MYSQLI_ASSOC)[0]["
 							<div class="collapse navbar-collapse" id="navbarNav">
 								<ul class="navbar-nav">
 									<li class="nav-item active">
-										<a class="nav-link" href="/~escheer/re-works/home.php">Home <span class="sr-only">(current)</span></a>
+										<a class="nav-link" href="<?php echo $host; ?>/home.php">Home <span class="sr-only">(current)</span></a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link" href="#"></a>
@@ -239,68 +243,70 @@ $totalUserCount = $totalUserCountsmt->get_result()->fetch_all(MYSQLI_ASSOC)[0]["
 						<div class="modal-dialog" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+									<h5 class="modal-title" id="exampleModalLabel">Add a Job</h5>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
 								</div>
 								<div class="modal-body">
-									<form class=" validate-form">
-										<span class="login100-form-title p-b-43 loginTitle">
-											Login to continue
-										</span>
-
-
-										<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-											<input class="input100" type="text" name="email">
-											<span class="focus-input100"></span>
-											<span class="label-input100">Email</span>
-										</div>
-										<div class="wrap-input100 validate-input" data-validate="Password is required">
-											<input class="input100" type="password" name="password">
-											<span class="focus-input100"></span>
-											<span class="label-input100">Password</span>
-										</div>
-										<div style="" class="wrap-input100 validate-input nameInput" data-validate="Password is required">
-											<input class="input100" type="text" name="name">
-											<span class="focus-input100"></span>
-											<span class="label-input100">Name</span>
-										</div>
-										<div style="" class="wrap-input100 validate-input phoneInput" data-validate="Password is required">
-											<input class="input100" type="text" name="phone">
-											<span class="focus-input100"></span>
-											<span class="label-input100">Phone</span>
-										</div>
-
-										<input class="toggleInput" name="toggle" type="hidden" value="login">
-
-										<div class="flex-sb-m w-full p-t-3 p-b-32 rmbInput">
-											<div class="contact100-form-checkbox">
-												<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-												<label class="label-checkbox100" for="ckb1">
-													Remember me
-												</label>
+									<form>
+										<div class="form-row">
+											<div class="form-group col-md-6">
+												<label for="inputState">Company</label>
+												<select id="inputState" class="form-control">
+													<option selected>Choose...</option>
+													<?php
+													$companyListSQL = "SELECT * FROM Company";
+													$companyListsmt = $mysqli->prepare($companyListSQL);
+													$companyListsmt->execute();
+													$companyList = $companyListsmt->get_result()->fetch_all(MYSQLI_ASSOC);
+													foreach ($companyList as $company) {
+														echo "<option>{$company["name"]}</option>";
+													}
+													?>
+												</select>
 											</div>
-
-											<div>
-												<button class="txt1 forgotpwInput">
-													Forgot Password?
-												</button>
+											<div class="form-group col-md-6">
+												<label for="inputPassword4">Title</label>
+												<input type="text" class="form-control" id="inputPassword4" placeholder="Title">
 											</div>
 										</div>
-										<div class="container-login100-form-btn">
-											<button class="login100-form-btn buttonInput">
-												Login
-											</button>
+										<div class="form-group">
+											<label for="inputAddress">Category</label>
+											<input type="text" class="form-control" id="inputAddress" placeholder="Category">
+										</div>
+										<div class="form-group">
+											<label for="inputAddress2">Experience Level</label>
+											<input type="text" class="form-control" id="inputAddress2" placeholder="Senior, Intermediate, or Junior">
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-7">
+												<label for="inputCity">Duration</label>
+												<input type="text" class="form-control" id="inputCity" placeholder="Duration">
+											</div>
+											<div class="form-group col-md-5">
+												<label for="inputState">Location</label>
+												<input type="text" class="form-control" id="inputPassword4" placeholder="Location">
+											</div>
+
+										</div>
+										<div class="form-row">
+											<div class="form-group col-md-8">
+												<label for="inputZip">Description</label>
+												<textarea placeholder="Write description of the job here" name="comment"></textarea>
+											</div>
+											<div class="form-group col-md-4">
+												<label for="inputZip">Openings</label>
+												<input type="text" class="form-control" id="inputZip" placeholder="Openings">
+											</div>
 										</div>
 
-
-									</form>
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-									<button type="button" class="btn btn-primary">Save changes</button>
+									<button type="button" class="btn btn-primary" type="submit">Confirm</button>
 								</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -308,7 +314,6 @@ $totalUserCount = $totalUserCountsmt->get_result()->fetch_all(MYSQLI_ASSOC)[0]["
 					<div class="container " style="padding-top:20px; overflow-y:scroll; height:60vh;  ">
 						<div class="row" style="padding-left: 33px; padding-bottom:6%;">
 							<?php
-
 							while ($stmt->fetch()) {
 								echo "<div class=\"col-sm-4\">";
 								echo "<div class=\"card speical_card\" style=\"width: 18rem; margin-top:20px;\">";
@@ -316,7 +321,7 @@ $totalUserCount = $totalUserCountsmt->get_result()->fetch_all(MYSQLI_ASSOC)[0]["
 								echo "<h5 class=\"card-title\">{$name} <span class=\"circle\" style=\" background-color:{$colors[strtolower($name)]} \" >{$name[0]}</span> </h5>";
 								echo "<p class=\"card-text\">{$title}</p>";
 								// echo "<p class=\"card-text\">Ranking: {$row["rank"]}</p>";
-								echo "<a href=\"/~escheer/re-works/job.php?id={$jobID}\" class=\"btn btn-primary purple-btn \" style=\" background:white;  \">See Details</a>";
+								echo "<a href=\"{$host}/job.php?id={$jobID}\" class=\"btn btn-primary purple-btn \" style=\" background:white;  \">See Details</a>";
 								echo "</div>";
 								echo "</div>";
 								echo "</div>";

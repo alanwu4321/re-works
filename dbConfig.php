@@ -1,17 +1,6 @@
 <?php
-// Development
-// $dbhost = '127.0.0.1:3306';
-// $dbuser = 'root';
-// $dbpassword = '';
-// $dbname = 'escheer';
-
-// Production
-$dbhost = 'localhost';
-$dbuser = 'escheer';
-$dbpassword = 'R@gnBnMn897';
-$dbname = 'escheer';
-
-// (2) mysqli connection variable
+$env = "dev";
+include "env.php";
 $mysqli = new mysqli($dbhost, $dbuser, $dbpassword, $dbname);
 if ($mysqli->connect_errno) 
 {

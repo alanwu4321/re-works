@@ -33,12 +33,16 @@
 <div class="php">
     <?php
     include "cookies.php";
+    $env = "dev";
+	include "env.php";
     $curUser = checkCookies();
     $curUserID = $curUser[0];
     $curUserType = $curUser[1];
     $curUserUsername = $curUser[2];
     $curUserName = ucwords($curUser[3]);
     $curUserTypeID = $curUser[4];
+
+
     ?>
 </div>
 <?php
@@ -53,13 +57,13 @@ $stmt->store_result();
 $stmt->bind_result($jobID, $companyID, $openings, $title, $category, $expLevel, $duration, $location, $description, $name, $division);
 $stmt->fetch();
 
-$sqlSJ = "SELECT * FROM SJ_Ranks WHERE s_Id=? AND jobID=? and rank IS NOT NULL";
+$sqlSJ = "SELECT * FROM SJ_Ranks WHERE s_Id=? AND jobID=? and 'rank' IS NOT NULL";
 $stmt = $mysqli->prepare($sqlSJ);
 $stmt->bind_param("ii", $curUserID, $jobID);
 $stmt->execute();
 $arrSJ = $stmt->get_result()->fetch_all(MYSQLI_ASSOC)[0];
 
-$sqlJS = "SELECT * FROM JS_Ranks WHERE s_Id=? and jobID=? and rank IS NOT NULL";
+$sqlJS = "SELECT * FROM JS_Ranks WHERE s_Id=? and jobID=? and 'rank' IS NOT NULL";
 $stmt = $mysqli->prepare($sqlJS);
 $stmt->bind_param("ii", $curUserID, $jobID);
 $stmt->execute();
@@ -126,7 +130,7 @@ function getInterviewerIDbyJobID($jobID)
                 <div class="login100-form" style="padding:0px; background:white; height:50vh; overflow-y:scroll;  ">
                     <div class="row bg-light" style="background:#f8f9fa; height:86px; z-index:10000; display: flex; justify-content:flex-end;">
 
-                        <span style="margin:30px; margin-right:50px;"> <span style="margin:15px;"> <a href="/~escheer/re-works/login.php?action=logout">Logout</a></span>
+                        <span style="margin:30px; margin-right:50px;"> <span style="margin:15px;"> <a href="<?php echo $host; ?>/login.php?action=logout">Logout</a></span>
                             <span> <a class="avatar" href="#">
                                     <img src="images/<?php echo $curUserID ?>.png" width="35" alt="Profile Avatar" title="Bradley Jones" />
                                 </a> </span>
@@ -174,7 +178,7 @@ function getInterviewerIDbyJobID($jobID)
                     <!-- <img src="images/bf-03.jpg">  -->
                     <div class="hero-image" style="background-image: linear-gradient(25deg, <?php echo $colors[strtolower($name)] ?>, rgba(249, 209, 205, 0.05)), url(images/bg.png);">
                         <nav class="navbar navbar-expand-lg navbar-light bg-light textfont">
-                            <a class="navbar-brand" href="/~escheer/re-works/home.php" style="font-size:2.3em; font-weight:600;">
+                            <a class="navbar-brand" href="<?php echo $host; ?>/home.php" style="font-size:2.3em; font-weight:600;">
                                 <img src="images/bg.png" width="65" height="60" class="textfont d-inline-block align-top" alt="">
                                 re:works
                             </a>
@@ -184,7 +188,7 @@ function getInterviewerIDbyJobID($jobID)
                             <div class="collapse navbar-collapse" id="navbarNav">
                                 <ul class="navbar-nav">
                                 <li class="nav-item ">
-										<a class="nav-link" href="/~escheer/re-works/home.php">Home</a>
+										<a class="nav-link" href="<?php echo $host; ?>/home.php">Home</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link" href="#"></a>

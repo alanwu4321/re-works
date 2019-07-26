@@ -738,6 +738,13 @@ input.input100 {
     margin-top: 25px;
 }
 
+.purple-btn:hover {
+    color: #fff;
+    border: 2px solid #0b0d6f;
+    background-color: #0b0d6f!important;
+    margin-top: 25px;
+}
+
 .order-card {
     color: #fff;
 }
