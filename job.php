@@ -33,7 +33,7 @@
 <div class="php">
     <?php
     include "cookies.php";
-    $env = "dev";
+    $env = "prod";
 	include "env.php";
     $curUser = checkCookies();
     $curUserID = $curUser[0];
