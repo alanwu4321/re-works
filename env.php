@@ -10,6 +10,6 @@ if ($env == "dev") {
 } else if ($env == "prod") {
     $dbhost = 'localhost';
     $dbuser = 'escheer';
-    $dbpassword = 'R@gnBnMn897';
+    $dbpassword = '';
     $dbname = 'escheer';
 }
