@@ -128,4 +128,8 @@ Previously, students have used Facebook, LinkedIn, Reddit or email to communicat
 
  </details>
  
+ ### Development
+ 
+ MacOS
+ `php -S 127.0.0.1:8080`
  
