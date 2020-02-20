@@ -7,8 +7,27 @@ The Re: Works website is an integrated platform that aims to facilitate and impr
 Previously, students have used Facebook, LinkedIn, Reddit or email to communicate their job intentions with other potential candidates, such as rejecting or accepting an offer, however, these sources are often unreliable and dispersed. Our application serves as an information hub of interview statuses, allowing co-op students to stay informed and make the best coop decisions they can, without the added stress and worry of not getting a job. With our algorithms, we can also predict the probability of a student getting matched or ranked for a job. 
 
 ### Features
-
 <details>
+  
+ <summary>
+<i>ER Diagram</i>
+</summary>
+
+<br>
+  <br>
+ 
+![Schema](https://lh4.googleusercontent.com/SLtEqnU1TmmUhYh1WPUk_cdXLnpXKuCB6V-yVBwmvGC2so0ae2uOq7RBE2cvQRvqrl5J2M5cDmwvIYTNGo9zxpkaWJAMVw1pB-p7wcDIsLPr1QoxFaMubBDFsOa3Tin99tLqokem)
+
+ </details>
+ 
+ <details>
+
+ 
+ 
+ 
+<details>
+  
+  
   
  <summary>
 <i>SQL Datebase Schema </i>
@@ -17,6 +36,10 @@ Previously, students have used Facebook, LinkedIn, Reddit or email to communicat
 <br>
 <i> Companies can post one to many jobs on re:works but each job belongs to one company. Jobs have interviews, in which one to many interviewers can host. Interviewers can host zero to many interviews for the job. Each student gets ranked by a job but jobs rank multiple potential students. Students rank zero to many jobs according to their preference but only assign one rank for each job. Our users can be either students or interviewers but not both, so we used disjoint generalization to indicate this. </i>
   <br>
+  
+  
+
+ 
  
 ![Schema](https://lh4.googleusercontent.com/tOUMz0SAERoPKXHJJz2VSXTgWCmheMO5pZJU6RwBQchVHLI3arqfVvEH1nAp_9Jcs9jmfWUTU8gYV_ag44Urg6x-v_S_ZmTsuNIp_axaDjZs78g-Dqk9Sw4E6bkd9nD97LqmCUjx)
 
