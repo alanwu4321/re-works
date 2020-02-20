@@ -20,10 +20,6 @@ Previously, students have used Facebook, LinkedIn, Reddit or email to communicat
 
  </details>
  
- <details>
-
- 
- 
  
 <details>
   
